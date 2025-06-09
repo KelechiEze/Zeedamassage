@@ -1,0 +1,372 @@
+/* AppointmentBookingSection Styles */
+.appointment-booking-section {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.booking-container {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: #2b1f1e;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Left Image Section */
+.image-section {
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.spa-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.spa-image:hover {
+  transform: scale(1.05);
+}
+
+/* Right Form Section */
+.form-section {
+  background: #2b1f1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 2.5rem;
+}
+
+.form-content {
+  width: 100%;
+  max-width: 420px;
+  animation: slideInRight 0.8s ease-out 0.2s both;
+}
+
+/* Header Section */
+.header-section {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.mandala-icon {
+  color: #f58220;
+  margin-bottom: 1.5rem;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.booking-title {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.booking-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Form Styles */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Input Base Styles */
+.form-input,
+.form-select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  padding: 0.875rem 1.25rem;
+  color: white;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #f58220;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(245, 130, 32, 0.1);
+  transform: translateY(-1px);
+}
+
+.form-input:hover,
+.form-select:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Width Classes */
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  flex: 1;
+}
+
+/* Date Input Specific */
+.date-input {
+  flex: 2;
+}
+
+.month-select,
+.day-select {
+  flex: 1;
+  text-align: center;
+}
+
+/* Select Dropdown Styling */
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 3rem;
+}
+
+.form-select option {
+  background: #2b1f1e;
+  color: white;
+}
+
+/* Submit Button */
+.submit-button {
+  background: linear-gradient(135deg, #f58220 0%, #e84c61 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 130, 32, 0.3);
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes floatIcon {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Mobile Responsiveness - Screens less than 800px */
+@media (max-width: 800px) {
+  .appointment-booking-section {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .booking-container {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .image-section {
+    min-height: 300px;
+    order: 1;
+  }
+
+  .form-section {
+    order: 2;
+    padding: 2rem 1.5rem;
+  }
+
+  .form-content {
+    max-width: 100%;
+  }
+
+  .booking-title {
+    font-size: 1.875rem;
+  }
+
+  .booking-subtitle {
+    font-size: 0.9rem;
+  }
+
+  /* Stack all inputs vertically on mobile */
+  .form-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .half-width,
+  .date-input,
+  .month-select,
+  .day-select {
+    width: 100%;
+    flex: none;
+  }
+
+  .form-input,
+  .form-select {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .submit-button {
+    padding: 1.125rem 2rem;
+    font-size: 1.125rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .appointment-booking-section {
+    padding: 0.5rem;
+  }
+
+  .form-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .booking-title {
+    font-size: 1.75rem;
+  }
+
+  .header-section {
+    margin-bottom: 2rem;
+  }
+
+  .mandala-icon {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Smooth focus transitions for better UX */
+.form-input:focus-within,
+.form-select:focus-within {
+  animation: focusPulse 0.3s ease-out;
+}
+
+@keyframes focusPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 130, 32, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(245, 130, 32, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 130, 32, 0);
+  }
+}
+
+/* Loading state for form submission */
+.submit-button.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.submit-button.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

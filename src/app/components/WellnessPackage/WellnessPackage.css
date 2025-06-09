@@ -1,0 +1,285 @@
+.wellness-packages {
+  background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 50%, #2c1810 100%);
+  padding: 5rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.wellness-packages::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(139, 69, 19, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.wellness-packages__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.wellness-packages__header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 0 2rem;
+}
+
+.wellness-packages__subtitle {
+  color: #d4a574;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out 0.2s forwards;
+}
+
+.wellness-packages__title {
+  color: #f5f5dc;
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  font-family: 'Times New Roman', serif;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease-out 0.4s forwards;
+}
+
+.wellness-packages__slider-container {
+  position: relative;
+  overflow: hidden;
+  margin: 0 -2rem;
+}
+
+.wellness-packages__slider {
+  display: flex;
+  animation: infiniteSlide 40s linear infinite;
+  will-change: transform;
+}
+
+.wellness-packages__card {
+  flex: 0 0 280px;
+  height: 360px;
+  margin: 0 1rem;
+  border-radius: 1.2rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+.wellness-packages__card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+}
+
+.wellness-packages__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(244, 164, 96, 0) 0%,
+    rgba(244, 164, 96, 0.1) 30%,
+    rgba(244, 164, 96, 0.8) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+}
+
+.wellness-packages__card:hover .wellness-packages__overlay {
+  opacity: 1;
+}
+
+.wellness-packages__content {
+  color: white;
+  text-align: left;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.6s ease 0.1s;
+  width: 100%;
+}
+
+.wellness-packages__card:hover .wellness-packages__content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.wellness-packages__icon {
+  margin-bottom: 0.75rem;
+  opacity: 0.9;
+  transform: scale(0.8);
+  transition: transform 0.6s ease 0.2s;
+}
+
+.wellness-packages__card:hover .wellness-packages__icon {
+  transform: scale(1);
+}
+
+.wellness-packages__card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.wellness-packages__card-description {
+  font-size: 0.85rem;
+  opacity: 0.95;
+  line-height: 1.4;
+  font-weight: 300;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Keyframe Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes infiniteSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 800px) {
+  .wellness-packages {
+    padding: 3rem 0;
+  }
+
+  .wellness-packages__title {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+  }
+
+  .wellness-packages__subtitle {
+    font-size: 0.75rem;
+  }
+
+  .wellness-packages__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .wellness-packages__slider-container {
+    margin: 0;
+    padding: 0 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .wellness-packages__slider-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wellness-packages__slider {
+    animation: none;
+    width: max-content;
+    padding-bottom: 1rem;
+    gap: 0.75rem;
+  }
+
+  .wellness-packages__card {
+    flex: 0 0 240px;
+    height: 300px;
+    margin: 0;
+  }
+
+  .wellness-packages__overlay {
+    padding: 1.25rem;
+  }
+
+  .wellness-packages__card-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .wellness-packages__card-description {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .wellness-packages__icon {
+    margin-bottom: 0.5rem;
+  }
+
+  .wellness-packages__content {
+    transform: translateY(20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .wellness-packages__title {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  .wellness-packages__card {
+    flex: 0 0 200px;
+    height: 260px;
+  }
+
+  .wellness-packages__card-title {
+    font-size: 1.1rem;
+  }
+
+  .wellness-packages__card-description {
+    font-size: 0.75rem;
+  }
+
+  .wellness-packages__overlay {
+    padding: 1rem;
+  }
+
+  .wellness-packages__content {
+    transform: translateY(15px);
+  }
+}
+
+/* Pause animation on hover for better UX */
+.wellness-packages__slider:hover {
+  animation-play-state: paused;
+}
+
+/* Enhanced hover effects for desktop */
+@media (min-width: 801px) {
+  .wellness-packages__card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .wellness-packages__overlay {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .wellness-packages__content {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+  }
+}
