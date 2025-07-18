@@ -30,7 +30,7 @@ const AppointmentBookingSection = () => {
   };
 
   return (
-    <section className="appointment-booking-section">
+    <section id="contact" className="appointment-booking-section">
       <div className="booking-container">
         {/* Left Side - Image */}
         <div className="image-section">

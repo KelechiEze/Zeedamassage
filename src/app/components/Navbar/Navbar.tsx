@@ -1,19 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, Menu, X, ChevronDown } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
+import Link from 'next/link';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleDropdownToggle = (dropdown: string) => {
-    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+  const handleNavClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
   };
 
   return (
@@ -31,61 +35,54 @@ const Navbar = () => {
               <circle cx="16" cy="24" r="1.5" fill="#EF5C32"/>
             </svg>
           </div>
-          <span className="logo-text">ZeedaBliss</span>
+          <span className="logo-text1">ZeedaaBliss</span>
         </div>
 
         {/* Desktop Menu */}
         <div className="navbar-menu">
-          <div className="menu-item dropdown">
-            <button 
-              className="menu-link"
-              onClick={() => handleDropdownToggle('home')}
-            >
-              Home <ChevronDown size={16} />
-            </button>
-            {activeDropdown === 'home' && (
-              <div className="dropdown-content">
-                <a href="#" className="dropdown-item">Main Home</a>
-                <a href="#" className="dropdown-item">Home Variant</a>
-              </div>
-            )}
-          </div>
+          <Link 
+            href="#home" 
+            className="menu-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('home');
+            }}
+          >
+            Home
+          </Link>
           
-          <a href="#" className="menu-link">About Us</a>
+          <Link 
+            href="#about" 
+            className="menu-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('about');
+            }}
+          >
+            About Us
+          </Link>
           
-          <div className="menu-item dropdown">
-            <button 
-              className="menu-link"
-              onClick={() => handleDropdownToggle('services')}
-            >
-              Services <ChevronDown size={16} />
-            </button>
-            {activeDropdown === 'services' && (
-              <div className="dropdown-content">
-                <a href="#" className="dropdown-item">Massage Therapy</a>
-                <a href="#" className="dropdown-item">Wellness Coaching</a>
-                <a href="#" className="dropdown-item">Meditation</a>
-              </div>
-            )}
-          </div>
+          <Link 
+            href="#services" 
+            className="menu-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('services');
+            }}
+          >
+            Services
+          </Link>
           
-          <div className="menu-item dropdown">
-            <button 
-              className="menu-link"
-              onClick={() => handleDropdownToggle('pages')}
-            >
-              Pages <ChevronDown size={16} />
-            </button>
-            {activeDropdown === 'pages' && (
-              <div className="dropdown-content">
-                <a href="#" className="dropdown-item">About</a>
-                <a href="#" className="dropdown-item">Contact</a>
-                <a href="#" className="dropdown-item">Blog</a>
-              </div>
-            )}
-          </div>
-          
-          <a href="#" className="menu-link">Contacts</a>
+          <Link 
+            href="#contact" 
+            className="menu-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('contact');
+            }}
+          >
+            Contact
+          </Link>
         </div>
 
         {/* Right Side Actions */}
@@ -93,7 +90,10 @@ const Navbar = () => {
           <button className="search-btn">
             <Search size={20} />
           </button>
-          <button className="book-appointment-btn">
+          <button 
+            className="book-appointment-btn"
+            onClick={() => handleNavClick('booking')}
+          >
             Book Appointment
           </button>
         </div>
@@ -107,62 +107,58 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="mobile-menu">
-          <div className="mobile-menu-item">
-            <button 
-              className="mobile-menu-link"
-              onClick={() => handleDropdownToggle('mobile-home')}
-            >
-              Home <ChevronDown size={16} />
-            </button>
-            {activeDropdown === 'mobile-home' && (
-              <div className="mobile-dropdown">
-                <a href="#" className="mobile-dropdown-item">Main Home</a>
-                <a href="#" className="mobile-dropdown-item">Home Variant</a>
-              </div>
-            )}
-          </div>
+          <Link 
+            href="#home" 
+            className="mobile-menu-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('home');
+            }}
+          >
+            Home
+          </Link>
           
-          <a href="#" className="mobile-menu-link">About Us</a>
+          <Link 
+            href="#about" 
+            className="mobile-menu-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('about');
+            }}
+          >
+            About Us
+          </Link>
           
-          <div className="mobile-menu-item">
-            <button 
-              className="mobile-menu-link"
-              onClick={() => handleDropdownToggle('mobile-services')}
-            >
-              Services <ChevronDown size={16} />
-            </button>
-            {activeDropdown === 'mobile-services' && (
-              <div className="mobile-dropdown">
-                <a href="#" className="mobile-dropdown-item">Massage Therapy</a>
-                <a href="#" className="mobile-dropdown-item">Wellness Coaching</a>
-                <a href="#" className="mobile-dropdown-item">Meditation</a>
-              </div>
-            )}
-          </div>
+          <Link 
+            href="#services" 
+            className="mobile-menu-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('services');
+            }}
+          >
+            Services
+          </Link>
           
-          <div className="mobile-menu-item">
-            <button 
-              className="mobile-menu-link"
-              onClick={() => handleDropdownToggle('mobile-pages')}
-            >
-              Pages <ChevronDown size={16} />
-            </button>
-            {activeDropdown === 'mobile-pages' && (
-              <div className="mobile-dropdown">
-                <a href="#" className="mobile-dropdown-item">About</a>
-                <a href="#" className="mobile-dropdown-item">Contact</a>
-                <a href="#" className="mobile-dropdown-item">Blog</a>
-              </div>
-            )}
-          </div>
-          
-          <a href="#" className="mobile-menu-link">Contacts</a>
+          <Link 
+            href="#contact" 
+            className="mobile-menu-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('contact');
+            }}
+          >
+            Contact
+          </Link>
           
           <div className="mobile-actions">
             <button className="mobile-search-btn">
               <Search size={20} /> Search
             </button>
-            <button className="mobile-book-btn">
+            <button 
+              className="mobile-book-btn"
+              onClick={() => handleNavClick('booking')}
+            >
               Book Appointment
             </button>
           </div>

@@ -1,0 +1,511 @@
+.preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Background Gradient */
+.background-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, 
+    hsl(25, 12%, 12%) 0%,
+    hsl(25, 15%, 8%) 50%,
+    hsl(25, 10%, 6%) 100%);
+  animation: backgroundPulse 6s ease-in-out infinite;
+}
+
+/* Floating Icons */
+.floating-icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.floating-icon {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0.15;
+  animation: floatAndPulse 8s ease-in-out infinite;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(233, 111, 48, 0.2);
+  box-shadow: 0 0 30px rgba(233, 111, 48, 0.1),
+              inset 0 0 20px rgba(233, 111, 48, 0.1);
+}
+
+.floating-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(100%) hue-rotate(10deg) saturate(150%) brightness(0.8);
+  transition: all 0.4s ease;
+}
+
+.icon-stones {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+  animation-duration: 10s;
+}
+
+.icon-hands {
+  top: 60%;
+  right: 20%;
+  animation-delay: -2s;
+  animation-duration: 12s;
+}
+
+.icon-leaves {
+  bottom: 25%;
+  left: 25%;
+  animation-delay: -4s;
+  animation-duration: 14s;
+}
+
+/* Particles */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #e96f30;
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat var(--duration, 4s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  box-shadow: 0 0 10px rgba(233, 111, 48, 0.6);
+  top: calc(50% + (var(--random-y, 0) * 300px));
+  left: calc(50% + (var(--random-x, 0) * 400px));
+}
+
+.particle:nth-child(odd) {
+  --random-x: -1;
+  --random-y: 0.5;
+}
+
+.particle:nth-child(even) {
+  --random-x: 1;
+  --random-y: -0.3;
+}
+
+.particle:nth-child(3n) {
+  --random-x: 0.5;
+  --random-y: 1;
+}
+
+.particle:nth-child(5n) {
+  --random-x: -0.7;
+  --random-y: -0.8;
+}
+
+/* Main Content */
+.preloader-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  animation: contentSlideUp 1.2s ease-out;
+}
+
+/* Logo */
+.logo-container {
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.logo-text {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 100;
+  color: #e96f30;
+  margin: 0;
+  text-shadow: 0 0 30px rgba(233, 111, 48, 0.5),
+               0 0 60px rgba(233, 111, 48, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100px) rotateX(90deg);
+  animation: logoCharReveal 1s ease-out forwards;
+  animation-delay: calc(1s + var(--char-delay, 0s));
+  position: relative;
+}
+
+.logo-char::before {
+  content: attr(data-char);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, 
+    #f8a97d, 
+    #e96f30, 
+    #f8a97d);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holographicShimmer 3s ease-in-out infinite;
+}
+
+.logo-subtitle {
+  font-size: clamp(0.8rem, 2vw, 1.2rem);
+  font-weight: 200;
+  letter-spacing: 0.3em;
+  color: #f8a97d;
+  margin: 10px 0 0 0;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 2.5s forwards;
+  text-shadow: 0 0 20px rgba(233, 111, 48, 0.3);
+}
+
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 2px;
+  background: hsl(25, 12%, 18%);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 10px hsl(25, 10%, 6%),
+              0 0 20px rgba(233, 111, 48, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    #d45a1a, 
+    #e96f30, 
+    #f8a97d);
+  border-radius: inherit;
+  position: relative;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(233, 111, 48, 0.6),
+              0 0 40px rgba(248, 169, 125, 0.4);
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(248, 169, 125, 0.8), 
+    transparent);
+  animation: progressShimmer 2s ease-in-out infinite;
+}
+
+.progress-glow {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  background: radial-gradient(ellipse, 
+    rgba(233, 111, 48, 0.3) 0%, 
+    transparent 70%);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.loading-text {
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  font-weight: 100;
+  color: #f8a97d;
+  margin: 20px 0 0 0;
+  opacity: 0.8;
+  text-shadow: 0 0 15px rgba(233, 111, 48, 0.3);
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+/* Holographic Overlay */
+.holographic-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(233, 111, 48, 0.05) 50%, 
+    transparent 70%);
+  background-size: 200% 200%;
+  animation: holographicSweep 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Fade Out Animation */
+.preloader-container.fade-out {
+  animation: fadeOut 0.8s ease-in forwards;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+    visibility: hidden;
+  }
+}
+
+@keyframes backgroundPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes floatAndPulse {
+  0%, 100% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+    opacity: 0.15;
+  }
+  25% {
+    transform: translateY(-20px) scale(1.1) rotate(5deg);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05) rotate(-3deg);
+    opacity: 0.2;
+  }
+  75% {
+    transform: translateY(-30px) scale(1.15) rotate(8deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-50px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0);
+  }
+}
+
+@keyframes contentSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoCharReveal {
+  from {
+    opacity: 0;
+    transform: translateY(100px) rotateX(90deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes holographicShimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes progressShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.2);
+  }
+}
+
+@keyframes textPulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes holographicSweep {
+  0%, 100% {
+    background-position: -200% -200%;
+    opacity: 0;
+  }
+  50% {
+    background-position: 200% 200%;
+    opacity: 0.3;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .floating-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .icon-stones {
+    top: 15%;
+    left: 10%;
+  }
+  
+  .icon-hands {
+    top: 70%;
+    right: 15%;
+  }
+  
+  .icon-leaves {
+    bottom: 20%;
+    left: 20%;
+  }
+  
+  .progress-container {
+    max-width: 300px;
+    padding: 0 20px;
+  }
+  
+  .logo-container {
+    margin-bottom: 40px;
+  }
+  
+  .particle {
+    width: 2px;
+    height: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .progress-container {
+    max-width: 250px;
+  }
+  
+  .logo-container {
+    margin-bottom: 30px;
+  }
+  
+  .preloader-content {
+    padding: 0 15px;
+  }
+}
+
+/* High-end animations for capable devices */
+@media (prefers-reduced-motion: no-preference) {
+  .floating-icon:hover {
+    animation-duration: 4s;
+    opacity: 0.4;
+  }
+  
+  .particle {
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .preloader-container,
+  .background-gradient,
+  .floating-icon,
+  .particle,
+  .progress-fill::after,
+  .progress-glow,
+  .loading-text,
+  .holographic-overlay,
+  .logo-char::before {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+  }
+}

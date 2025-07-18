@@ -28,7 +28,7 @@
   animation: fadeIn 0.6s ease-out;
 }
 
-.logo-text {
+.logo-text1 {
   font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
   font-weight: 600;
@@ -304,7 +304,7 @@
     display: block;
   }
 
-  .logo-text {
+  .logo-text1 {
     font-size: 1.25rem;
   }
 }
@@ -314,7 +314,7 @@
     padding: 0.75rem;
   }
 
-  .logo-text {
+  .logo-text1 {
     font-size: 1.1rem;
   }
 }

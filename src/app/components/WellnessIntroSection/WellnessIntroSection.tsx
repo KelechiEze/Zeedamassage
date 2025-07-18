@@ -6,11 +6,11 @@ import './WellnessIntroSection.css';
 
 const WellnessIntroSection = () => {
   return (
-    <section className="wellness-intro-section">
+    <section id="about" className="wellness-intro-section">
       <div className="wellness-container">
         {/* Header Section */}
         <div className="header-section">
-          <p className="subtitle">WELCOME TO ZEEDA BLISS</p>
+          <p className="subtitle">WELCOME TO ZEEDAA BLISS</p>
           <h1 className="main-title">
             Integrated Healing with Therapeutic<br />
             Massage, Energy Healing, Holistic<br />

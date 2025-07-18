@@ -4,7 +4,7 @@ import './HeroSection.css';
 
 const HeroSection = () => {
   return (
-    <section className="hero-section">
+    <section  id="home" className="hero-section">
       <div className="hero-container">
         {/* Left Side - Text Content */}
         <div className="hero-content">
