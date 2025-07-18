@@ -154,7 +154,7 @@ const AppointmentBookingSection = () => {
 
               {/* Submit Button */}
               <button type="submit" className="submit-button">
-                Book Online
+                Book Massage
               </button>
             </form>
           </div>

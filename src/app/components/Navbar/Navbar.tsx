@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import './Navbar.css';
 
@@ -87,12 +87,9 @@ const Navbar = () => {
 
         {/* Right Side Actions */}
         <div className="navbar-actions">
-          <button className="search-btn">
-            <Search size={20} />
-          </button>
           <button 
             className="book-appointment-btn"
-            onClick={() => handleNavClick('booking')}
+            onClick={() => handleNavClick('contact')}
           >
             Book Appointment
           </button>
@@ -152,12 +149,9 @@ const Navbar = () => {
           </Link>
           
           <div className="mobile-actions">
-            <button className="mobile-search-btn">
-              <Search size={20} /> Search
-            </button>
             <button 
               className="mobile-book-btn"
-              onClick={() => handleNavClick('booking')}
+              onClick={() => handleNavClick('contact')}
             >
               Book Appointment
             </button>
