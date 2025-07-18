@@ -13,9 +13,9 @@ const WellnessPhilosophy = () => {
   }, []);
 
   const stats = [
-    { number: "1,000+", label: "Treatments per month" },
+    { number: "50+", label: "Treatments per month" },
     { number: "12", label: "Number of practitioners" },
-    { number: "80+", label: "Total years of experience" },
+    { number: "10+", label: "Total years of experience" },
     { number: "5", label: "Treatment rooms" }
   ];
 

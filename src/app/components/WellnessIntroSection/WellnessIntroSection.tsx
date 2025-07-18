@@ -25,7 +25,7 @@ const WellnessIntroSection = () => {
             <div className="icon-wrapper">
               <Flower className="feature-icon" />
             </div>
-            <h3 className="feature-title">Serving Since 2012</h3>
+            <h3 className="feature-title">Serving Since 2020</h3>
             <p className="feature-description">
               Over a decade of guiding guests toward balance, beauty, and inner peace.
             </p>

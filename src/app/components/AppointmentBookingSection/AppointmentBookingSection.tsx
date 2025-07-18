@@ -12,44 +12,80 @@ const AppointmentBookingSection = () => {
     service: '',
     date: '',
     month: '08',
-    day: '30'
+    day: '30',
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] =
+    useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Booking submitted:', formData);
-    // Handle form submission logic here
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/book-appointment', {
+        method: 'POST',
+        mode: 'cors',                    // ✨ NEW: tell the browser this is a CORS request
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          service: '',
+          date: '',
+          month: '08',
+          day: '30',
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section id="contact" className="appointment-booking-section">
       <div className="booking-container">
-        {/* Left Side - Image */}
+        {/* Left Side – Image */}
         <div className="image-section">
-          <img 
+          <img
             src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             alt="Relaxing spa treatment"
             className="spa-image"
           />
         </div>
 
-        {/* Right Side - Form */}
+        {/* Right Side – Form */}
         <div className="form-section">
           <div className="form-content">
-            {/* Icon and Header */}
+            {/* Icon and Heading */}
             <div className="header-section">
               <Flower2 className="mandala-icon" size={48} />
               <h2 className="booking-title">Book an Appointment</h2>
               <p className="booking-subtitle">
-                Your life is waiting. Fast, long-lasting relief is nearby.
+                Your life is waiting. Fast, long‑lasting relief is nearby.
               </p>
             </div>
 
@@ -68,7 +104,7 @@ const AppointmentBookingSection = () => {
                 />
               </div>
 
-              {/* Phone and Email Row */}
+              {/* Phone & Email */}
               <div className="form-row">
                 <input
                   type="tel"
@@ -90,7 +126,7 @@ const AppointmentBookingSection = () => {
                 />
               </div>
 
-              {/* Service Selection */}
+              {/* Service */}
               <div className="form-group">
                 <select
                   name="service"
@@ -108,7 +144,7 @@ const AppointmentBookingSection = () => {
                 </select>
               </div>
 
-              {/* Date Selection Row */}
+              {/* Date */}
               <div className="form-row">
                 <input
                   type="date"
@@ -125,18 +161,11 @@ const AppointmentBookingSection = () => {
                   onChange={handleInputChange}
                   className="form-select month-select"
                 >
-                  <option value="01">01</option>
-                  <option value="02">02</option>
-                  <option value="03">03</option>
-                  <option value="04">04</option>
-                  <option value="05">05</option>
-                  <option value="06">06</option>
-                  <option value="07">07</option>
-                  <option value="08">08</option>
-                  <option value="09">09</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
+                  {Array.from({ length: 12 }, (_, i) => (
+                    <option key={i + 1} value={String(i + 1).padStart(2, '0')}>
+                      {String(i + 1).padStart(2, '0')}
+                    </option>
+                  ))}
                 </select>
                 <select
                   name="day"
@@ -152,10 +181,22 @@ const AppointmentBookingSection = () => {
                 </select>
               </div>
 
-              {/* Submit Button */}
-              <button type="submit" className="submit-button">
-                Book Massage
+              {/* Submit */}
+              <button type="submit" className="submit-button" disabled={isSubmitting}>
+                {isSubmitting ? 'Booking...' : 'Book Massage'}
               </button>
+
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="success-message">
+                  Appointment booked successfully! We’ll contact you shortly.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="error-message">
+                  Something went wrong. Please try again later.
+                </div>
+              )}
             </form>
           </div>
         </div>

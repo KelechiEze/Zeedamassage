@@ -61,14 +61,13 @@ const Footer = () => {
           {/* Information Columns */}
           <div className="info-columns">
             {/* Address Column */}
-            <div className="info-column">
-              <h4>Address</h4>
-              <div className="column-content">
-                <p>511 SW 10th Ave 1206,</p>
-                <p>Portland, OR, United States</p>
-                <a href="#" className="view-directions">View Directions</a>
-              </div>
-            </div>
+           <div className="info-column">
+  <h4>Address</h4>
+  <div className="column-content">
+    <p>Opposite chicken wings lounge no.5 Ogudu ojota</p>
+    <a href="#" className="view-directions">View Directions</a>
+  </div>
+</div>
 
             {/* Work Hours Column */}
             <div className="info-column">
@@ -76,7 +75,6 @@ const Footer = () => {
               <div className="column-content">
                 <p>Monday to Friday: 9AM – 6PM</p>
                 <p>Saturday: 9AM – 6PM</p>
-                <p>Sunday: 9AM – 5PM</p>
               </div>
             </div>
 
@@ -86,11 +84,11 @@ const Footer = () => {
               <div className="column-content">
                 <div className="contact-item">
                   <Phone size={16} />
-                  <span>+1 800-123-1234</span>
+                  <span>09013067278</span>
                 </div>
                 <div className="contact-item">
                   <Mail size={16} />
-                  <span>spa@example.com</span>
+                  <span>Zeedaas43@gmail.com</span>
                 </div>
                 {/* Social Media Icons */}
                 <div className="social-icons">
