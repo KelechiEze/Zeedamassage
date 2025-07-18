@@ -20,7 +20,7 @@ const AppointmentBookingSection = () => {
     useState<'idle' | 'success' | 'error'>('idle');
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -37,7 +37,7 @@ const AppointmentBookingSection = () => {
     try {
       const response = await fetch('/api/book-appointment', {
         method: 'POST',
-        mode: 'cors',                    // ✨ NEW: tell the browser this is a CORS request
+        mode: 'cors', // Required for cross-origin
         headers: {
           'Content-Type': 'application/json',
         },
@@ -59,6 +59,7 @@ const AppointmentBookingSection = () => {
         setSubmitStatus('error');
       }
     } catch (error) {
+      console.error('Submission error:', error); // ✅ FIXED: Now used
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -80,7 +81,6 @@ const AppointmentBookingSection = () => {
         {/* Right Side – Form */}
         <div className="form-section">
           <div className="form-content">
-            {/* Icon and Heading */}
             <div className="header-section">
               <Flower2 className="mandala-icon" size={48} />
               <h2 className="booking-title">Book an Appointment</h2>
@@ -89,9 +89,7 @@ const AppointmentBookingSection = () => {
               </p>
             </div>
 
-            {/* Form */}
             <form onSubmit={handleSubmit} className="booking-form">
-              {/* Full Name */}
               <div className="form-group">
                 <input
                   type="text"
@@ -104,7 +102,6 @@ const AppointmentBookingSection = () => {
                 />
               </div>
 
-              {/* Phone & Email */}
               <div className="form-row">
                 <input
                   type="tel"
@@ -126,7 +123,6 @@ const AppointmentBookingSection = () => {
                 />
               </div>
 
-              {/* Service */}
               <div className="form-group">
                 <select
                   name="service"
@@ -138,18 +134,15 @@ const AppointmentBookingSection = () => {
                   <option value="">Choose a Service</option>
                   <option value="massage">Deep Tissue Massage</option>
                   <option value="facial">Rejuvenating Facial</option>
-                  <option value="aromatherapy">Aromatherapy Session</option>
                   <option value="couples">Couples Retreat</option>
                   <option value="wellness">Wellness Package</option>
                 </select>
               </div>
 
-              {/* Date */}
               <div className="form-row">
                 <input
                   type="date"
                   name="date"
-                  placeholder="Select Date"
                   value={formData.date}
                   onChange={handleInputChange}
                   className="form-input date-input"
@@ -181,20 +174,18 @@ const AppointmentBookingSection = () => {
                 </select>
               </div>
 
-              {/* Submit */}
               <button type="submit" className="submit-button" disabled={isSubmitting}>
                 {isSubmitting ? 'Booking...' : 'Book Massage'}
               </button>
 
-              {/* Status Messages */}
               {submitStatus === 'success' && (
                 <div className="success-message">
-                  Appointment booked successfully! We’ll contact you shortly.
+                  Appointment booked successfully! We’ll contact you shortly.
                 </div>
               )}
               {submitStatus === 'error' && (
                 <div className="error-message">
-                  Something went wrong. Please try again later.
+                  Something went wrong. Please try again later.
                 </div>
               )}
             </form>
