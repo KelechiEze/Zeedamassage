@@ -3,8 +3,22 @@
 import './HeroSection.css';
 
 const HeroSection = () => {
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section  id="home" className="hero-section">
+    <section id="home" className="hero-section">
       <div className="hero-container">
         {/* Left Side - Text Content */}
         <div className="hero-content">
@@ -17,10 +31,16 @@ const HeroSection = () => {
               without the need for harsh or painful manipulation.
             </p>
             <div className="hero-buttons">
-              <button className="btn-primary">
+              <button 
+                className="btn-primary"
+                onClick={scrollToServices}
+              >
                 Explore Services
               </button>
-              <button className="btn-secondary">
+              <button 
+                className="btn-secondary"
+                onClick={scrollToContact}
+              >
                 Book Appointment
               </button>
             </div>

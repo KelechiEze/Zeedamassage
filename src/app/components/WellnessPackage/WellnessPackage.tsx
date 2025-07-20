@@ -47,7 +47,7 @@ const WellnessPackage = () => {
   const duplicatedPackages = [...packages, ...packages, ...packages];
 
   return (
-    <section id="services" className="wellness-packages">
+    <section className="wellness-packages">
       <div className="wellness-packages__container">
         <div className="wellness-packages__header">
           <h5 className="wellness-packages__subtitle">WELLNESS PACKAGES</h5>

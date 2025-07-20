@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Flower2 } from 'lucide-react';
+import SocialMediaModal from '../SocialMediaModal/SocialMediaModal';
 import './AppointmentBookingSection.css';
 
 const AppointmentBookingSection = () => {
@@ -16,12 +17,10 @@ const AppointmentBookingSection = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] =
-    useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showModal, setShowModal] = useState(false);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -37,7 +36,7 @@ const AppointmentBookingSection = () => {
     try {
       const response = await fetch('/api/book-appointment', {
         method: 'POST',
-        mode: 'cors', // Required for cross-origin
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -46,24 +45,31 @@ const AppointmentBookingSection = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({
-          name: '',
-          phone: '',
-          email: '',
-          service: '',
-          date: '',
-          month: '08',
-          day: '30',
-        });
+        setShowModal(true); // Show modal with current form data
       } else {
         setSubmitStatus('error');
       }
     } catch (error) {
-      console.error('Submission error:', error); // ✅ FIXED: Now used
+      console.error('Submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSubmitStatus('idle');
+    // Reset form after modal is closed
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      service: '',
+      date: '',
+      month: '08',
+      day: '30',
+    });
   };
 
   return (
@@ -72,8 +78,8 @@ const AppointmentBookingSection = () => {
         {/* Left Side – Image */}
         <div className="image-section">
           <img
-            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Relaxing spa treatment"
+            src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Luxury spa massage therapy"
             className="spa-image"
           />
         </div>
@@ -134,6 +140,7 @@ const AppointmentBookingSection = () => {
                   <option value="">Choose a Service</option>
                   <option value="massage">Deep Tissue Massage</option>
                   <option value="facial">Rejuvenating Facial</option>
+                  <option value="aromatherapy">Aromatherapy Session</option>
                   <option value="couples">Couples Retreat</option>
                   <option value="wellness">Wellness Package</option>
                 </select>
@@ -178,11 +185,6 @@ const AppointmentBookingSection = () => {
                 {isSubmitting ? 'Booking...' : 'Book Massage'}
               </button>
 
-              {submitStatus === 'success' && (
-                <div className="success-message">
-                  Appointment booked successfully! We’ll contact you shortly.
-                </div>
-              )}
               {submitStatus === 'error' && (
                 <div className="error-message">
                   Something went wrong. Please try again later.
@@ -192,6 +194,12 @@ const AppointmentBookingSection = () => {
           </div>
         </div>
       </div>
+
+      <SocialMediaModal 
+        isOpen={showModal} 
+        onClose={handleCloseModal}
+        formData={formData}
+      />
     </section>
   );
 };

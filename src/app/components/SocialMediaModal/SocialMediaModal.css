@@ -1,0 +1,385 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1rem;
+}
+
+.modal-overlay.modal-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal Container */
+.modal-container {
+  background: linear-gradient(145deg, #2b1f1e, #3a2d2c);
+  border-radius: 24px;
+  padding: 2.5rem;
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(245, 130, 32, 0.2);
+  transform: scale(0.8) translateY(50px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-container.modal-show {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Close Button */
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* Modal Header */
+.modal-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.modal-icon-wrapper {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-success-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #f58220, #e84c61);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  animation: successPulse 2s infinite;
+  box-shadow: 0 0 30px rgba(245, 130, 32, 0.4);
+}
+
+.modal-title {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.modal-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Social Media Grid */
+.social-media-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.social-media-option {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-media-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.social-media-option:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.social-media-option:hover::before {
+  left: 100%;
+}
+
+.social-media-option:active {
+  transform: translateY(-2px);
+}
+
+/* Social Icon Wrapper */
+.social-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* Social Media Specific Colors */
+.social-media-option.whatsapp .social-icon-wrapper {
+  background: rgba(37, 211, 102, 0.2);
+  color: #25d366;
+}
+
+.social-media-option.whatsapp:hover .social-icon-wrapper {
+  background: rgba(37, 211, 102, 0.3);
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+}
+
+.social-media-option.instagram .social-icon-wrapper {
+  background: rgba(225, 48, 108, 0.2);
+  color: #e1306c;
+}
+
+.social-media-option.instagram:hover .social-icon-wrapper {
+  background: rgba(225, 48, 108, 0.3);
+  box-shadow: 0 0 20px rgba(225, 48, 108, 0.3);
+}
+
+.social-media-option.tiktok .social-icon-wrapper {
+  background: rgba(255, 0, 80, 0.2);
+  color: #ff0050;
+}
+
+.social-media-option.tiktok:hover .social-icon-wrapper {
+  background: rgba(255, 0, 80, 0.3);
+  box-shadow: 0 0 20px rgba(255, 0, 80, 0.3);
+}
+
+/* Social Labels and Descriptions */
+.social-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.social-description {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+
+/* Modal Footer */
+.modal-footer {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes successPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px rgba(245, 130, 32, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(245, 130, 32, 0.6);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Social media options staggered animation */
+.social-media-option:nth-child(1) {
+  animation: slideInUp 0.5s ease-out 0.1s both;
+}
+
+.social-media-option:nth-child(2) {
+  animation: slideInUp 0.5s ease-out 0.2s both;
+}
+
+.social-media-option:nth-child(3) {
+  animation: slideInUp 0.5s ease-out 0.3s both;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .modal-container {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+    border-radius: 20px;
+    max-height: 85vh;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+
+  .modal-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .social-media-option {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .social-icon-wrapper {
+    width: 44px;
+    height: 44px;
+  }
+
+  .social-label {
+    font-size: 1rem;
+  }
+
+  .social-description {
+    font-size: 0.8rem;
+  }
+
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .modal-success-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+  }
+
+  .modal-title {
+    font-size: 1.375rem;
+  }
+
+  .social-media-option {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .social-icon-wrapper {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* Smooth scrollbar for modal content */
+.modal-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.modal-container::-webkit-scrollbar-thumb {
+  background: rgba(245, 130, 32, 0.5);
+  border-radius: 3px;
+}
+
+.modal-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 130, 32, 0.7);
+}
+
+/* Clipboard notification */
+.clipboard-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #f58220, #e84c61);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  z-index: 10000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
