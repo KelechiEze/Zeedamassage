@@ -16,8 +16,6 @@ const AppointmentBookingSection = () => {
     day: '30',
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [showModal, setShowModal] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -28,38 +26,13 @@ const AppointmentBookingSection = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      const response = await fetch('/api/book-appointment', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setShowModal(true); // Show modal with current form data
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      console.error('Submission error:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+    setShowModal(true); // Only show modal, no submission
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setSubmitStatus('idle');
     // Reset form after modal is closed
     setFormData({
       name: '',
@@ -181,15 +154,9 @@ const AppointmentBookingSection = () => {
                 </select>
               </div>
 
-              <button type="submit" className="submit-button" disabled={isSubmitting}>
-                {isSubmitting ? 'Booking...' : 'Book Massage'}
+              <button type="submit" className="submit-button">
+                Book Massage
               </button>
-
-              {submitStatus === 'error' && (
-                <div className="error-message">
-                  Something went wrong. Please try again later.
-                </div>
-              )}
             </form>
           </div>
         </div>

@@ -103,22 +103,6 @@
   width: 100%;
 }
 
-/* Add these to your existing styles */
-
-.error-message {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background-color: #fee2e2;
-  color: #b91c1c;
-  border-radius: 0.375rem;
-  text-align: center;
-}
-
-.submit-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
 /* Input Base Styles */
 .form-input,
 .form-select {
@@ -258,7 +242,6 @@
   }
 }
 
-/* Mobile Responsiveness - Screens less than 800px */
 @media (max-width: 800px) {
   .appointment-booking-section {
     padding: 1rem;
@@ -278,7 +261,7 @@
 
   .form-section {
     order: 2;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1rem;
   }
 
   .form-content {
@@ -297,29 +280,35 @@
   .form-row {
     flex-direction: column;
     gap: 1rem;
+    display: flex;
+    width: 100%;
   }
 
+  .form-group,
+  .form-input,
+  .form-select,
   .half-width,
   .date-input,
   .month-select,
-  .day-select {
-    width: 100%;
-    flex: none;
+  .day-select,
+  .submit-button {
+    width: 100% !important;
+    box-sizing: border-box;
   }
 
   .form-input,
   .form-select {
-    padding: 1rem 1.25rem;
-    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
   }
 
   .submit-button {
-    padding: 1.125rem 2rem;
-    font-size: 1.125rem;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    margin-top: 1rem;
   }
 }
 
-/* Extra small screens */
 @media (max-width: 480px) {
   .appointment-booking-section {
     padding: 0.5rem;
@@ -340,6 +329,17 @@
   .mandala-icon {
     margin-bottom: 1rem;
   }
+
+  .form-group,
+  .form-input,
+  .form-select,
+  .half-width,
+  .date-input,
+  .month-select,
+  .day-select,
+  .submit-button {
+    width: 100% !important;
+  }
 }
 
 /* Smooth focus transitions for better UX */
@@ -357,32 +357,5 @@
   }
   100% {
     box-shadow: 0 0 0 0 rgba(245, 130, 32, 0);
-  }
-}
-
-/* Loading state for form submission */
-.submit-button.loading {
-  pointer-events: none;
-  opacity: 0.8;
-}
-
-.submit-button.loading::after {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  margin: auto;
-  border: 2px solid transparent;
-  border-top-color: white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }
