@@ -8,6 +8,7 @@
   justify-content: center;
   padding: 2rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
 }
 
 .booking-container {
@@ -21,6 +22,7 @@
   overflow: hidden;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
   animation: fadeInUp 0.8s ease-out;
+  box-sizing: border-box;
 }
 
 /* Left Image Section */
@@ -28,6 +30,8 @@
   position: relative;
   min-height: 600px;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .spa-image {
@@ -36,6 +40,7 @@
   object-fit: cover;
   object-position: center;
   transition: transform 0.6s ease;
+  display: block;
 }
 
 .spa-image:hover {
@@ -79,12 +84,15 @@
   align-items: center;
   justify-content: center;
   padding: 3.5rem 2.5rem;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .form-content {
   width: 100%;
   max-width: 420px;
   animation: slideInRight 0.8s ease-out 0.2s both;
+  box-sizing: border-box;
 }
 
 /* Header Section */
@@ -121,16 +129,20 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group {
   width: 100%;
+  box-sizing: border-box;
 }
 
 .form-row {
   display: flex;
   gap: 1rem;
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* Enhanced Dropdown Containers */
@@ -140,6 +152,8 @@
   opacity: 0;
   transform: translateY(-20px);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dropdown-container.show {
@@ -171,6 +185,8 @@
   transform: translateY(-20px);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   margin-top: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .submit-container.show {
@@ -209,6 +225,8 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
   position: relative;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .form-input::placeholder {
@@ -235,10 +253,13 @@
 /* Width Classes */
 .full-width {
   width: 100%;
+  box-sizing: border-box;
 }
 
 .half-width {
   flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 /* Select Dropdown Styling */
@@ -276,6 +297,8 @@
   position: relative;
   overflow: hidden;
   transform: translateY(0);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .submit-button:hover {
@@ -382,6 +405,7 @@
 /* Smooth transitions for all interactive elements */
 * {
   -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
 }
 
 .form-input,
@@ -390,7 +414,7 @@
   will-change: transform;
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness - Primary breakpoint */
 @media (max-width: 800px) {
   .appointment-booking-section {
     padding: 1rem;
@@ -401,20 +425,31 @@
     grid-template-columns: 1fr;
     max-width: 100%;
     border-radius: 16px;
+    margin: 0;
+    width: 100%;
   }
 
   .image-section {
-    min-height: 300px;
+    min-height: 250px;
     order: 1;
+    width: 100%;
+  }
+
+  .spa-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .form-section {
     order: 2;
-    padding: 2rem 1rem;
+    padding: 2rem 1.5rem;
+    width: 100%;
   }
 
   .form-content {
     max-width: 100%;
+    width: 100%;
   }
 
   .booking-title {
@@ -428,31 +463,57 @@
   .form-row {
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
   }
 
   .half-width {
     width: 100%;
+    flex: none;
   }
 
   .form-input,
   .form-select {
     padding: 0.8rem 1rem;
     font-size: 0.9rem;
+    width: 100%;
+    min-width: 0;
   }
 
   .submit-button {
     padding: 0.9rem 1.5rem;
     font-size: 1rem;
+    width: 100%;
   }
 
   .dropdown-container.show {
     max-height: 150px;
   }
+
+  /* Ensure proper spacing on mobile */
+  .booking-form {
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .form-group {
+    width: 100%;
+  }
 }
 
+/* Extra small mobile devices */
 @media (max-width: 480px) {
   .appointment-booking-section {
     padding: 0.5rem;
+  }
+
+  .booking-container {
+    border-radius: 12px;
+    margin: 0;
+    width: 100%;
+  }
+
+  .image-section {
+    min-height: 200px;
   }
 
   .form-section {
@@ -474,10 +535,53 @@
   .form-input,
   .form-select {
     border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
   }
 
   .submit-button {
     border-radius: 12px;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  /* Reduce gaps on very small screens */
+  .booking-form {
+    gap: 0.875rem;
+  }
+
+  .form-row {
+    gap: 0.875rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .appointment-booking-section {
+    padding: 0.25rem;
+  }
+
+  .form-section {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .booking-title {
+    font-size: 1.5rem;
+  }
+
+  .booking-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .form-input,
+  .form-select {
+    padding: 0.7rem 0.875rem;
+    font-size: 0.8rem;
+  }
+
+  .submit-button {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -513,5 +617,40 @@
   .form-select:focus {
     border-color: #f58220;
     outline: 2px solid #f58220;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 800px) and (orientation: landscape) {
+  .appointment-booking-section {
+    min-height: auto;
+    padding: 1rem;
+  }
+  
+  .booking-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .image-section {
+    min-height: 400px;
+    order: 0;
+  }
+  
+  .form-section {
+    order: 0;
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Portrait tablets */
+@media (min-width: 481px) and (max-width: 800px) {
+  .form-section {
+    padding: 2.5rem 2rem;
+  }
+  
+  .form-input,
+  .form-select {
+    padding: 0.875rem 1.125rem;
+    font-size: 0.925rem;
   }
 }

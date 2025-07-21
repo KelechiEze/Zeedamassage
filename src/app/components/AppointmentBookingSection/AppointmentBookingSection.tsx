@@ -224,7 +224,7 @@ Please confirm my appointment. Thank you!`;
       <div className="booking-container">
         <div className="image-section">
           <img
-            src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&h=800&fit=crop&crop=center&auto=format&q=80"
+            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&h=800&fit=crop&crop=center&auto=format&q=80"
             alt="Luxury spa massage therapy"
             className="spa-image"
           />
