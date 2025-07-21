@@ -5,74 +5,33 @@ import './SocialMediaModal.css';
 interface SocialMediaModalProps {
   isOpen: boolean;
   onClose: () => void;
-  formData: {
-    name: string;
-    phone: string;
-    email: string;
-    service: string;
-    date: string;
-    month: string;
-    day: string;
-  };
+  message: string;
 }
 
-const SocialMediaModal: React.FC<SocialMediaModalProps> = ({ isOpen, onClose, formData }) => {
-  // Format the appointment message
-  const formatAppointmentMessage = () => {
-    const serviceNames: Record<string, string> = {
-      massage: 'Deep Tissue Massage',
-      facial: 'Rejuvenating Facial', 
-      aromatherapy: 'Aromatherapy Session',
-      couples: 'Couples Retreat',
-      wellness: 'Wellness Package'
-    };
-
-    const serviceName = formData.service ? (serviceNames[formData.service] || formData.service) : 'Not specified';
-    
-    // Format date for better readability if available
-    const formattedDate = formData.date ? new Date(formData.date).toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }) : 'Not specified';
-
-    return `Hello! I would like to book an appointment with you. Here are my info:
-
-👤 Name: ${formData.name || 'Not specified'}
-📞 Phone: ${formData.phone || 'Not specified'}
-📧 Email: ${formData.email || 'Not specified'}
-💆‍♀️ Service: ${serviceName}
-📅 Preferred Date: ${formattedDate}
-📆 Alternate Date: ${formData.month}/${formData.day}
-
-Please confirm my appointment. Thank you!`;
-  };
-
-  const appointmentMessage = formatAppointmentMessage();
+const SocialMediaModal: React.FC<SocialMediaModalProps> = ({ isOpen, onClose, message }) => {
   
   // Social media links with message handling
   const socialMediaLinks = {
     whatsapp: {
-      url: `https://wa.me/2349013067278?text=${encodeURIComponent(appointmentMessage)}`,
-      handler: () => window.open(`https://wa.me/2349013067278?text=${encodeURIComponent(appointmentMessage)}`, '_blank')
+      url: `https://wa.me/2349013067278?text=${encodeURIComponent(message)}`,
+      handler: () => window.open(`https://wa.me/2349013067278?text=${encodeURIComponent(message)}`, '_blank')
     },
     instagram: {
       url: 'https://instagram.com/zeedaa_coco',
       handler: async () => {
         try {
           // Instagram DM deep link (works on mobile)
-          const instagramUrl = `https://www.instagram.com/direct/new/?text=${encodeURIComponent(appointmentMessage)}`;
+          const instagramUrl = `https://www.instagram.com/direct/new/?text=${encodeURIComponent(message)}`;
           window.open(instagramUrl, '_blank');
           
           // Fallback: Copy to clipboard if the deep link doesn't work
-          await navigator.clipboard.writeText(appointmentMessage);
+          await navigator.clipboard.writeText(message);
           showClipboardNotification();
         } catch (err) {
           console.error('Failed to open Instagram:', err);
           // Fallback to regular Instagram URL
           window.open('https://instagram.com/zeedaa_coco', '_blank');
-          await navigator.clipboard.writeText(appointmentMessage);
+          await navigator.clipboard.writeText(message);
           showClipboardNotification();
         }
       }
@@ -82,7 +41,7 @@ Please confirm my appointment. Thank you!`;
       handler: async () => {
         try {
           // TikTok doesn't support direct messaging from web, so we'll copy to clipboard
-          await navigator.clipboard.writeText(appointmentMessage);
+          await navigator.clipboard.writeText(message);
           showClipboardNotification();
           window.open('https://tiktok.com/@babylee_thevoice', '_blank');
         } catch (err) {
@@ -100,7 +59,9 @@ Please confirm my appointment. Thank you!`;
     document.body.appendChild(notification);
     
     setTimeout(() => {
-      document.body.removeChild(notification);
+      if (document.body.contains(notification)) {
+        document.body.removeChild(notification);
+      }
     }, 3000);
   };
 
@@ -140,8 +101,11 @@ Please confirm my appointment. Thank you!`;
             <div className="social-icon-wrapper">
               <MessageCircle size={32} />
             </div>
-            <span className="social-label">WhatsApp</span>
-            <div className="social-description">Message with appointment details</div>
+            <div className="social-content">
+              <span className="social-label">WhatsApp</span>
+              <div className="social-description">Message with appointment details</div>
+            </div>
+            <div className="social-arrow">→</div>
           </button>
 
           <button 
@@ -151,8 +115,11 @@ Please confirm my appointment. Thank you!`;
             <div className="social-icon-wrapper">
               <Instagram size={32} />
             </div>
-            <span className="social-label">Instagram</span>
-            <div className="social-description">Open DM with your details</div>
+            <div className="social-content">
+              <span className="social-label">Instagram</span>
+              <div className="social-description">Open DM with your details</div>
+            </div>
+            <div className="social-arrow">→</div>
           </button>
 
           <button 
@@ -162,8 +129,11 @@ Please confirm my appointment. Thank you!`;
             <div className="social-icon-wrapper">
               <Music size={32} />
             </div>
-            <span className="social-label">TikTok</span>
-            <div className="social-description">Copy details & message us</div>
+            <div className="social-content">
+              <span className="social-label">TikTok</span>
+              <div className="social-description">Copy details & message us</div>
+            </div>
+            <div className="social-arrow">→</div>
           </button>
         </div>
 

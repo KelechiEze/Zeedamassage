@@ -27,9 +27,8 @@ const WellnessIntroSection = () => {
             </div>
             <h3 className="feature-title">Serving Since 2020</h3>
             <p className="feature-description">
-              Over a decade of guiding guests toward balance, beauty, and inner peace.
+              Over a 4 years of guiding guests toward balance, beauty, and inner peace.
             </p>
-            <button className="feature-button">About Us</button>
           </div>
 
           {/* Vertical Divider */}
@@ -44,7 +43,6 @@ const WellnessIntroSection = () => {
             <p className="feature-description">
               We offer high quality services. Check out clients&#39; testimonials!
             </p>
-            <button className="feature-button">View Reviews</button>
           </div>
 
           {/* Vertical Divider */}
@@ -59,7 +57,6 @@ const WellnessIntroSection = () => {
             <p className="feature-description">
               Our tranquil retreats are thoughtfully placed for ease, access, and serenity.
             </p>
-            <button className="feature-button">Read More</button>
           </div>
         </div>
       </div>
